@@ -62,6 +62,7 @@ namespace TreeGeneric.UI
                 int id = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
                 treeTypeService.Delete(id);
                 MessageBox.Show("Kayıt Başarıyla Silindi");
+                MessageBox.Show("Liste Güncellendi.");
                 RefreshGrid();
             }
             else
