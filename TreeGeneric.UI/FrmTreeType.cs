@@ -24,7 +24,9 @@ namespace TreeGeneric.UI
             InitializeComponent();
             this.frmTreeTypes = frmTreeTypes;
             this.selectedId = id;
+            this.treeTypeService = treeTypeService;
             regionService=scope.Resolve<IRegionService>();
+
             
         }
 
@@ -42,7 +44,9 @@ namespace TreeGeneric.UI
                 txtPlantingPrice.Text = treeType.PlantingPrice.ToString();
                 txtStock.Text = treeType.AvailabilityCount.ToString();
                 txtTreePrice.Text = treeType.TreePrice.ToString();
-                cbTreeRegion.SelectedItem = treeType.Region.Name;
+                var region = regionService.Find(int.Parse(cbTreeRegion.SelectedValue.ToString()));
+                treeType.Regions.Add(region);
+                //cbTreeRegion.SelectedItem = treeType.Region.Name;
                 if (treeType.IsActive)
                 {
                     rbActive.Checked = true;
@@ -78,7 +82,7 @@ namespace TreeGeneric.UI
             treeType.PlantingPrice = int.Parse(txtPlantingPrice.Text);
             treeType.TreePrice = int.Parse(txtTreePrice.Text);
             treeType.AvailabilityCount = int.Parse(txtStock.Text);
-            treeType.RegionId = int.Parse(cbTreeRegion.SelectedValue.ToString());
+            //treeType.RegionId = int.Parse(cbTreeRegion.SelectedValue.ToString());
             treeType.Commision = decimal.Parse(10.ToString());
 
             if (rbActive.Checked)
@@ -105,7 +109,7 @@ namespace TreeGeneric.UI
                 treeType.TreePrice = decimal.Parse(txtTreePrice.Text);
                 treeType.PlantingPrice = decimal.Parse(txtPlantingPrice.Text);
                 treeType.Commision = decimal.Parse(10.ToString());
-                treeType.RegionId = int.Parse(cbTreeRegion.SelectedValue.ToString());
+                //treeType.RegionId = int.Parse(cbTreeRegion.SelectedValue.ToString());
                 //treeType.CreatedBy = "username";
                 if (rbActive.Checked)
                 {

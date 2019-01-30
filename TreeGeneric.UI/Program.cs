@@ -20,7 +20,7 @@ namespace TreeGeneric.UI
         {
             //AutoFac = IoC (Inversion-of-Control) Provider ı dır. Bununla dependency injection işini kolaylaştırır.
             var builder = new ContainerBuilder();
-            builder.RegisterType<ApplicationDbContext>().As<ApplicationDbContext>();
+            builder.RegisterType<ApplicationDbContext>().As<ApplicationDbContext>().SingleInstance();//Singleton yaptık
 
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
 
